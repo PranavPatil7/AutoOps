@@ -1,0 +1,7 @@
+# Remember to list implicit packages here, otherwise version won't be fixated!
+mock
+pytest
+psutil
+webtest
+RandomWords
+pyrabbit

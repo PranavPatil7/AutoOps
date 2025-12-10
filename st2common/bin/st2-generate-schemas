@@ -1,0 +1,45 @@
+#!/usr/bin/env python3
+#
+# Copyright 2021 The StackStorm Authors.
+#
+# Licensed to the StackStorm, Inc ('StackStorm') under one or more
+# contributor license agreements.  See the NOTICE file distributed with
+# this work for additional information regarding copyright ownership.
+# The ASF licenses this file to You under the Apache License, Version 2.0
+# (the "License"); you may not use this file except in compliance with
+# the License.  You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+"""
+A script that generates st2 metadata (pack, action, rule, ...) schemas.
+`st2-generate-schemas` is used to to update contrib/schemas/*.json.
+
+USAGE: st2-generate-schemas <destination directory>
+"""
+
+from __future__ import absolute_import
+
+import os
+import sys
+
+from st2common.cmd import generate_schemas
+
+
+def init():
+    scripts_dir = os.path.dirname(os.path.abspath(__file__))
+    schemas_dir = os.path.abspath(os.path.join(scripts_dir, "../../contrib/schemas"))
+
+    # set the default for backwards compatibility
+    generate_schemas.default_schemas_dir = schemas_dir
+
+
+if __name__ == "__main__":
+    init()
+    sys.exit(generate_schemas.main())
